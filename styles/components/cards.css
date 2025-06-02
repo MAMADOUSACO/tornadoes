@@ -1,0 +1,533 @@
+/* ===== CARD COMPONENTS ===== */
+
+/* === BASE CARD STYLES === */
+.card {
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-heavy);
+  border-color: var(--sky-warning);
+}
+
+.card-header {
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid var(--light-gray);
+  background: var(--gradient-sky);
+  position: relative;
+}
+
+.card-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--tornado-core) 0%, var(--sky-warning) 50%, var(--tornado-core) 100%);
+}
+
+.card-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin: 0;
+  line-height: var(--line-height-tight);
+}
+
+.card-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--medium-gray);
+  margin: var(--space-xs) 0 0 0;
+  font-weight: var(--font-weight-normal);
+}
+
+.card-body {
+  padding: var(--space-xl);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text {
+  color: var(--dark-gray);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-lg);
+  flex: 1;
+}
+
+.card-footer {
+  padding: var(--space-lg) var(--space-xl);
+  background: var(--off-white);
+  border-top: 1px solid var(--light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+/* === CARD VARIANTS === */
+
+/* Tornado Information Cards */
+.card-tornado {
+  border-left: 4px solid var(--tornado-core);
+  background: linear-gradient(135deg, var(--white) 0%, rgba(220, 20, 60, 0.02) 100%);
+}
+
+.card-tornado .card-header {
+  background: linear-gradient(135deg, var(--tornado-swirl) 0%, rgba(220, 20, 60, 0.1) 100%);
+  color: var(--white);
+}
+
+.card-tornado .card-title {
+  color: var(--white);
+}
+
+/* Safety Cards */
+.card-safety {
+  border-left: 4px solid var(--safe-green);
+  background: linear-gradient(135deg, var(--white) 0%, rgba(34, 139, 34, 0.02) 100%);
+}
+
+.card-safety .card-header {
+  background: linear-gradient(135deg, var(--safe-green) 0%, rgba(34, 139, 34, 0.1) 100%);
+  color: var(--white);
+}
+
+.card-safety .card-title {
+  color: var(--white);
+}
+
+.card-safety::before {
+  content: '🛡️';
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-size: var(--font-size-xl);
+  opacity: var(--opacity-medium);
+}
+
+/* Warning Cards */
+.card-warning {
+  border-left: 4px solid var(--warning-orange);
+  background: linear-gradient(135deg, var(--white) 0%, rgba(255, 140, 0, 0.02) 100%);
+}
+
+.card-warning .card-header {
+  background: linear-gradient(135deg, var(--warning-orange) 0%, rgba(255, 140, 0, 0.1) 100%);
+  color: var(--white);
+}
+
+.card-warning .card-title {
+  color: var(--white);
+}
+
+.card-warning::before {
+  content: '⚠️';
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-size: var(--font-size-xl);
+  opacity: var(--opacity-medium);
+}
+
+/* Danger Cards */
+.card-danger {
+  border-left: 4px solid var(--emergency-red);
+  background: linear-gradient(135deg, var(--white) 0%, rgba(220, 20, 60, 0.02) 100%);
+  animation: pulse 2s infinite;
+}
+
+.card-danger .card-header {
+  background: linear-gradient(135deg, var(--emergency-red) 0%, rgba(220, 20, 60, 0.1) 100%);
+  color: var(--white);
+}
+
+.card-danger .card-title {
+  color: var(--white);
+}
+
+.card-danger::before {
+  content: '🚨';
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-size: var(--font-size-xl);
+  animation: bounce 1s infinite;
+}
+
+/* === EDUCATIONAL CARDS === */
+
+/* Fact Cards */
+.card-fact {
+  background: var(--gradient-sky);
+  border: 2px solid var(--info-blue);
+  position: relative;
+  overflow: visible;
+}
+
+.card-fact::before {
+  content: 'FACT';
+  position: absolute;
+  top: -12px;
+  left: var(--space-lg);
+  background: var(--info-blue);
+  color: var(--white);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Definition Cards */
+.card-definition {
+  background: linear-gradient(135deg, var(--wind-light) 0%, var(--cloud-white) 100%);
+  border: 2px solid var(--sky-clear);
+  position: relative;
+  overflow: visible;
+}
+
+.card-definition::before {
+  content: 'DEFINITION';
+  position: absolute;
+  top: -12px;
+  left: var(--space-lg);
+  background: var(--sky-clear);
+  color: var(--white);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Quiz Cards */
+.card-quiz {
+  background: var(--white);
+  border: 2px solid var(--medium-gray);
+  transition: all var(--transition-normal);
+}
+
+.card-quiz:hover {
+  border-color: var(--tornado-core);
+  transform: scale(1.02);
+}
+
+.card-quiz.correct {
+  border-color: var(--safe-green);
+  background: linear-gradient(135deg, var(--white) 0%, rgba(34, 139, 34, 0.05) 100%);
+}
+
+.card-quiz.incorrect {
+  border-color: var(--emergency-red);
+  background: linear-gradient(135deg, var(--white) 0%, rgba(220, 20, 60, 0.05) 100%);
+  animation: shake 0.5s ease-in-out;
+}
+
+/* === FUJITA SCALE CARDS === */
+.card-scale {
+  border: none;
+  color: var(--white);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-scale::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.card-scale:hover::before {
+  opacity: 1;
+}
+
+.card-scale.ef0 { background: linear-gradient(135deg, var(--radar-green) 0%, #7BCF7B 100%); }
+.card-scale.ef1 { background: linear-gradient(135deg, var(--radar-yellow) 0%, #FFFF7F 100%); color: var(--dark-gray); text-shadow: none; }
+.card-scale.ef2 { background: linear-gradient(135deg, var(--radar-orange) 0%, #FFB347 100%); }
+.card-scale.ef3 { background: linear-gradient(135deg, var(--radar-red) 0%, #FF6B6B 100%); }
+.card-scale.ef4 { background: linear-gradient(135deg, var(--emergency-red) 0%, #DC143C 100%); }
+.card-scale.ef5 { background: linear-gradient(135deg, var(--radar-purple) 0%, #9370DB 100%); }
+
+.card-scale .card-title {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-3xl);
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+/* === INTERACTIVE CARDS === */
+.card-interactive {
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-spring);
+}
+
+.card-interactive:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-storm);
+}
+
+.card-interactive:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+/* Card with image */
+.card-image {
+  padding: 0;
+}
+
+.card-image-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.card-image .card-body {
+  padding: var(--space-xl);
+}
+
+/* === COMPACT CARDS === */
+.card-compact {
+  padding: var(--space-md);
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-light);
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.card-compact:hover {
+  transform: translateX(5px);
+  box-shadow: var(--shadow-medium);
+  border-color: var(--tornado-core);
+}
+
+.card-compact-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-tornado);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+}
+
+.card-compact-content {
+  flex: 1;
+}
+
+.card-compact-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-dark);
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.card-compact-text {
+  font-size: var(--font-size-sm);
+  color: var(--medium-gray);
+  margin: 0;
+}
+
+/* === DATA CARDS === */
+.card-data {
+  text-align: center;
+  background: var(--gradient-sky);
+  border: none;
+  padding: var(--space-2xl);
+}
+
+.card-data-value {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--tornado-core);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-mono);
+}
+
+.card-data-label {
+  font-size: var(--font-size-lg);
+  color: var(--storm-medium);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-data-description {
+  font-size: var(--font-size-sm);
+  color: var(--medium-gray);
+  margin-top: var(--space-md);
+}
+
+/* === PROGRESS CARDS === */
+.card-progress {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: var(--tornado-core);
+  transition: width var(--transition-slow);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+
+/* === FLOATING CARDS === */
+.card-floating {
+  position: absolute;
+  z-index: var(--z-tooltip);
+  min-width: 200px;
+  background: var(--white);
+  border: 1px solid var(--medium-gray);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-heavy);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-normal);
+  pointer-events: none;
+}
+
+.card-floating.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* === RESPONSIVE CARDS === */
+@media (max-width: 768px) {
+  .card {
+    border-radius: var(--radius-lg);
+  }
+  
+  .card-header,
+  .card-body,
+  .card-footer {
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  .card-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .card-image-top {
+    height: 150px;
+  }
+  
+  .card-data {
+    padding: var(--space-lg);
+  }
+  
+  .card-data-value {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .card-compact {
+    padding: var(--space-sm);
+    gap: var(--space-sm);
+  }
+  
+  .card-compact-icon {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .card-header,
+  .card-body,
+  .card-footer {
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  .card-title {
+    font-size: var(--font-size-base);
+  }
+  
+  .card-data-value {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .card-scale .card-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .card-floating {
+    min-width: 150px;
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* === ACCESSIBILITY === */
+.card-interactive:focus {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Screen reader improvements */
+.card-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* === HIGH CONTRAST MODE === */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 2px;
+    border-color: var(--black);
+  }
+  
+  .card-title {
+    color: var(--black);
+  }
+  
+  .card-text {
+    color: var(--black);
+  }
+  
+  .card-scale {
+    border: 2px solid var(--black);
+    color: var(--black);
+    text-shadow: none;
+  }
+}
