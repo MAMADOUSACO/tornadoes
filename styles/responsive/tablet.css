@@ -1,0 +1,581 @@
+/* ===== TABLET RESPONSIVE STYLES ===== */
+
+/* === TABLET BREAKPOINTS === */
+@media (min-width: 641px) and (max-width: 1024px) {
+  
+  /* === GLOBAL TABLET ADJUSTMENTS === */
+  :root {
+    --header-height: 70px;
+    --sidebar-width: 250px;
+    --space-section: var(--space-3xl);
+  }
+  
+  html {
+    font-size: 15px;
+  }
+  
+  /* === LAYOUT ADAPTATIONS === */
+  .site-header {
+    height: var(--header-height);
+    padding: 0 var(--space-lg);
+  }
+  
+  .container {
+    padding: 0 var(--space-lg);
+  }
+  
+  .section {
+    padding: var(--space-section) 0;
+  }
+  
+  /* Two-column layouts work well on tablet */
+  .layout-sidebar {
+    grid-template-columns: 1fr var(--sidebar-width);
+    gap: var(--space-xl);
+  }
+  
+  .layout-sidebar.sidebar-left {
+    grid-template-columns: var(--sidebar-width) 1fr;
+  }
+  
+  /* Three-column becomes two-column */
+  .layout-three-col {
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-lg);
+  }
+  
+  .layout-three-col > *:last-child {
+    grid-column: 1 / -1;
+    margin-top: var(--space-lg);
+  }
+  
+  /* === NAVIGATION TABLET === */
+  .primary-nav {
+    display: flex;
+  }
+  
+  .mobile-nav-toggle {
+    display: none;
+  }
+  
+  .nav-list {
+    gap: var(--space-xs);
+  }
+  
+  .nav-link {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+  
+  /* Simplified dropdown for tablet */
+  .dropdown-menu {
+    min-width: 180px;
+    font-size: var(--font-size-sm);
+  }
+  
+  .dropdown-item {
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  /* === TYPOGRAPHY TABLET === */
+  h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--space-xl);
+  }
+  
+  h2 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-lg);
+  }
+  
+  h3 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-md);
+  }
+  
+  h4 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-md);
+  }
+  
+  p {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .lead {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-xl);
+  }
+  
+  /* === GRID SYSTEMS === */
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-auto {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-lg);
+  }
+  
+  /* === BUTTON ADAPTATIONS === */
+  .btn {
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-base);
+  }
+  
+  .btn-group {
+    flex-direction: row;
+    width: auto;
+  }
+  
+  .btn-fab {
+    width: 52px;
+    height: 52px;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+  }
+  
+  /* === CARD ADAPTATIONS === */
+  .card-header,
+  .card-body,
+  .card-footer {
+    padding: var(--space-lg) var(--space-xl);
+  }
+  
+  .card-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .card-compact {
+    flex-direction: row;
+    text-align: left;
+    padding: var(--space-md) var(--space-lg);
+    gap: var(--space-md);
+  }
+  
+  .card-compact-icon {
+    width: 44px;
+    height: 44px;
+  }
+  
+  /* Card hover effects more pronounced on tablet */
+  .card:hover {
+    transform: translateY(-6px);
+  }
+  
+  .card-interactive:hover {
+    transform: translateY(-8px) scale(1.01);
+  }
+  
+  /* === FORM ADAPTATIONS === */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-base);
+  }
+  
+  .form-label {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .quiz-question-form {
+    padding: var(--space-xl) var(--space-2xl);
+  }
+  
+  .quiz-answers {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+  
+  .quiz-answer {
+    padding: var(--space-lg);
+  }
+  
+  .quiz-answer-text {
+    font-size: var(--font-size-base);
+  }
+  
+  /* === SIMULATION ADAPTATIONS === */
+  .simulator-layout {
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: auto 1fr;
+    height: 75vh;
+  }
+  
+  .simulator-controls {
+    grid-row: 1 / -1;
+    grid-column: 1;
+    border-right: 1px solid var(--medium-gray);
+    border-bottom: none;
+    overflow-y: auto;
+  }
+  
+  .simulator-header {
+    grid-column: 2;
+    grid-row: 1;
+    padding: var(--space-lg);
+  }
+  
+  .simulator-canvas {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  
+  .control-group {
+    margin-bottom: var(--space-lg);
+  }
+  
+  /* === SCALE EXPLORER TABLET === */
+  .scale-explorer {
+    grid-template-columns: 1fr 1fr;
+    height: 60vh;
+    min-height: 500px;
+  }
+  
+  .scale-selector {
+    border-right: 1px solid var(--medium-gray);
+    border-bottom: none;
+    padding: var(--space-xl);
+  }
+  
+  .scale-display {
+    padding: var(--space-xl);
+  }
+  
+  .scale-rating {
+    font-size: var(--font-size-2xl);
+  }
+  
+  /* === MODAL ADAPTATIONS === */
+  .modal-content {
+    max-width: 85vw;
+    max-height: 85vh;
+    margin: var(--space-lg);
+  }
+  
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: var(--space-xl);
+  }
+  
+  .modal-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .modal-footer {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: var(--space-md);
+  }
+  
+  .modal-footer .btn {
+    width: auto;
+  }
+  
+  /* Larger modals on tablet */
+  .modal-lg .modal-content {
+    max-width: 90vw;
+  }
+  
+  .modal-xl .modal-content {
+    max-width: 95vw;
+  }
+  
+  /* === TOOLTIP ADAPTATIONS === */
+  .tooltip-content {
+    max-width: 280px;
+    font-size: var(--font-size-sm);
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  .tooltip-rich .tooltip-content {
+    max-width: 320px;
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  .tooltip-definition .tooltip-content {
+    max-width: 300px;
+  }
+  
+  /* Hover tooltips work well on tablet */
+  .tooltip:hover .tooltip-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  /* === TABLE ADAPTATIONS === */
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .table {
+    min-width: 100%;
+    font-size: var(--font-size-sm);
+  }
+  
+  .table th,
+  .table td {
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  /* === HERO SECTION === */
+  .hero-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    min-height: 50vh;
+    padding: var(--space-3xl) 0;
+  }
+  
+  .hero-content {
+    gap: var(--space-lg);
+  }
+  
+  /* === DATA VISUALIZATION === */
+  .data-viz-layout {
+    grid-template-columns: 250px 1fr;
+  }
+  
+  .data-controls {
+    padding: var(--space-lg);
+  }
+  
+  .data-chart {
+    padding: var(--space-lg);
+  }
+  
+  .chart-container {
+    overflow-x: visible;
+  }
+  
+  /* === BREADCRUMB ADAPTATIONS === */
+  .breadcrumbs {
+    font-size: var(--font-size-sm);
+    overflow-x: visible;
+    white-space: normal;
+  }
+  
+  /* === EDUCATIONAL CONTENT === */
+  .definition,
+  .fact-box,
+  .warning-box,
+  .danger-box {
+    padding: var(--space-lg) var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+  
+  .quiz-progress {
+    height: 8px;
+    margin-bottom: var(--space-xl);
+  }
+  
+  /* === FUJITA SCALE TABLET === */
+  .ef-scale-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+  
+  .ef-scale-item {
+    padding: var(--space-lg);
+  }
+  
+  .ef-rating {
+    font-size: var(--font-size-xl);
+  }
+  
+  /* === SIDEBAR NAVIGATION === */
+  .sidebar-nav {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-lg));
+    padding: var(--space-lg);
+  }
+  
+  .sidebar-nav-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .sidebar-nav-link {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+  
+  /* === ANIMATION ENHANCEMENTS === */
+  .tornado-element:hover {
+    animation-duration: 2s; /* Faster on hover for tablet */
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.03);
+  }
+  
+  /* === TABLET-SPECIFIC UTILITIES === */
+  .tablet-stack {
+    flex-direction: column !important;
+  }
+  
+  .tablet-row {
+    flex-direction: row !important;
+  }
+  
+  .tablet-hidden {
+    display: none !important;
+  }
+  
+  .tablet-show {
+    display: block !important;
+  }
+  
+  .tablet-two-col {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .tablet-center {
+    text-align: center !important;
+  }
+  
+  /* === TOUCH OPTIMIZATIONS === */
+  .btn,
+  .form-input,
+  .form-select,
+  .quiz-answer {
+    min-height: 42px; /* Slightly smaller than mobile but still accessible */
+  }
+  
+  .touch-target {
+    min-height: 42px;
+    min-width: 42px;
+  }
+  
+  /* === LANDSCAPE ORIENTATION === */
+  @media (orientation: landscape) {
+    .hero-layout {
+      min-height: 60vh;
+    }
+    
+    .simulator-layout {
+      height: 80vh;
+    }
+    
+    .scale-explorer {
+      height: 70vh;
+    }
+    
+    /* Optimize for landscape viewing */
+    .landscape-full-height {
+      height: 100vh;
+    }
+    
+    .landscape-sidebar {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      height: calc(100vh - var(--header-height));
+      overflow-y: auto;
+    }
+    
+    .landscape-main {
+      margin-left: var(--sidebar-width);
+    }
+  }
+  
+  /* === PORTRAIT ORIENTATION === */
+  @media (orientation: portrait) {
+    .layout-three-col {
+      grid-template-columns: 1fr;
+    }
+    
+    .hero-layout {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    
+    .simulator-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto 1fr;
+      height: 85vh;
+    }
+    
+    .simulator-controls {
+      grid-row: 2;
+      grid-column: 1;
+      border-right: none;
+      border-bottom: 1px solid var(--medium-gray);
+      max-height: 250px;
+    }
+    
+    .scale-explorer {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+    
+    .scale-selector {
+      border-right: none;
+      border-bottom: 1px solid var(--medium-gray);
+    }
+  }
+  
+  /* === PERFORMANCE OPTIMIZATIONS === */
+  .heavy-animation {
+    animation-duration: 4s; /* Slightly reduce for performance */
+  }
+  
+  /* === ACCESSIBILITY IMPROVEMENTS === */
+  .focus-ring:focus {
+    outline-width: 2px;
+  }
+  
+  /* Better spacing for touch interaction */
+  .interactive-element {
+    margin: var(--space-xs);
+  }
+  
+  /* === CONTRAST ADJUSTMENTS === */
+  @media (prefers-contrast: high) {
+    .card:hover {
+      border-width: 3px;
+    }
+    
+    .btn:hover {
+      border-width: 3px;
+    }
+  }
+}
+
+/* === LARGE TABLET (768px - 1024px) === */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    max-width: 720px;
+  }
+  
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .quiz-answers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ef-scale-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .modal-content {
+    max-width: 700px;
+  }
+}

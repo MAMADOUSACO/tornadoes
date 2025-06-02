@@ -1,0 +1,431 @@
+/* ===== VISIBILITY UTILITIES ===== */
+
+/* === BASIC VISIBILITY === */
+.visible {
+  visibility: visible !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}
+
+.opacity-0 { opacity: 0 !important; }
+.opacity-5 { opacity: 0.05 !important; }
+.opacity-10 { opacity: 0.1 !important; }
+.opacity-20 { opacity: 0.2 !important; }
+.opacity-25 { opacity: 0.25 !important; }
+.opacity-30 { opacity: 0.3 !important; }
+.opacity-40 { opacity: 0.4 !important; }
+.opacity-50 { opacity: 0.5 !important; }
+.opacity-60 { opacity: 0.6 !important; }
+.opacity-70 { opacity: 0.7 !important; }
+.opacity-75 { opacity: 0.75 !important; }
+.opacity-80 { opacity: 0.8 !important; }
+.opacity-90 { opacity: 0.9 !important; }
+.opacity-95 { opacity: 0.95 !important; }
+.opacity-100 { opacity: 1 !important; }
+
+/* === DISPLAY UTILITIES === */
+.block { display: block !important; }
+.inline-block { display: inline-block !important; }
+.inline { display: inline !important; }
+.flex { display: flex !important; }
+.inline-flex { display: inline-flex !important; }
+.grid { display: grid !important; }
+.inline-grid { display: inline-grid !important; }
+.table { display: table !important; }
+.table-row { display: table-row !important; }
+.table-cell { display: table-cell !important; }
+.none { display: none !important; }
+.hidden { display: none !important; }
+.show { display: block !important; }
+
+/* === RESPONSIVE VISIBILITY === */
+
+/* Mobile visibility (up to 640px) */
+@media (max-width: 640px) {
+  .mobile\:block { display: block !important; }
+  .mobile\:inline-block { display: inline-block !important; }
+  .mobile\:inline { display: inline !important; }
+  .mobile\:flex { display: flex !important; }
+  .mobile\:inline-flex { display: inline-flex !important; }
+  .mobile\:grid { display: grid !important; }
+  .mobile\:hidden { display: none !important; }
+  .mobile\:show { display: block !important; }
+  
+  .mobile\:visible { visibility: visible !important; }
+  .mobile\:invisible { visibility: hidden !important; }
+  
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: block !important; }
+  .mobile-only { display: block !important; }
+}
+
+/* Hide on mobile but show on larger screens */
+@media (min-width: 641px) {
+  .mobile-only { display: none !important; }
+}
+
+/* Tablet visibility (641px to 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet\:block { display: block !important; }
+  .tablet\:inline-block { display: inline-block !important; }
+  .tablet\:inline { display: inline !important; }
+  .tablet\:flex { display: flex !important; }
+  .tablet\:inline-flex { display: inline-flex !important; }
+  .tablet\:grid { display: grid !important; }
+  .tablet\:hidden { display: none !important; }
+  .tablet\:show { display: block !important; }
+  
+  .tablet\:visible { visibility: visible !important; }
+  .tablet\:invisible { visibility: hidden !important; }
+  
+  .hide-tablet { display: none !important; }
+  .show-tablet { display: block !important; }
+  .tablet-only { display: block !important; }
+}
+
+/* Hide on tablet but show on other screens */
+@media (max-width: 640px), (min-width: 1025px) {
+  .tablet-only { display: none !important; }
+}
+
+/* Desktop visibility (1025px and up) */
+@media (min-width: 1025px) {
+  .desktop\:block { display: block !important; }
+  .desktop\:inline-block { display: inline-block !important; }
+  .desktop\:inline { display: inline !important; }
+  .desktop\:flex { display: flex !important; }
+  .desktop\:inline-flex { display: inline-flex !important; }
+  .desktop\:grid { display: grid !important; }
+  .desktop\:hidden { display: none !important; }
+  .desktop\:show { display: block !important; }
+  
+  .desktop\:visible { visibility: visible !important; }
+  .desktop\:invisible { visibility: hidden !important; }
+  
+  .hide-desktop { display: none !important; }
+  .show-desktop { display: block !important; }
+  .desktop-only { display: block !important; }
+}
+
+/* Hide on desktop but show on smaller screens */
+@media (max-width: 1024px) {
+  .desktop-only { display: none !important; }
+}
+
+/* Large desktop visibility (1400px and up) */
+@media (min-width: 1400px) {
+  .xl-desktop\:block { display: block !important; }
+  .xl-desktop\:hidden { display: none !important; }
+  .xl-desktop-only { display: block !important; }
+}
+
+@media (max-width: 1399px) {
+  .xl-desktop-only { display: none !important; }
+}
+
+/* === ORIENTATION-BASED VISIBILITY === */
+@media (orientation: portrait) {
+  .portrait\:block { display: block !important; }
+  .portrait\:hidden { display: none !important; }
+  .landscape-only { display: none !important; }
+  .portrait-only { display: block !important; }
+}
+
+@media (orientation: landscape) {
+  .landscape\:block { display: block !important; }
+  .landscape\:hidden { display: none !important; }
+  .portrait-only { display: none !important; }
+  .landscape-only { display: block !important; }
+}
+
+/* === PRINT VISIBILITY === */
+@media print {
+  .print\:block { display: block !important; }
+  .print\:inline { display: inline !important; }
+  .print\:inline-block { display: inline-block !important; }
+  .print\:hidden { display: none !important; }
+  .print\:show { display: block !important; }
+  
+  .hide-print { display: none !important; }
+  .show-print { display: block !important; }
+  .print-only { display: block !important; }
+  
+  /* Hide interactive elements in print */
+  .no-print,
+  .interactive-only {
+    display: none !important;
+  }
+}
+
+@media screen {
+  .print-only { display: none !important; }
+}
+
+/* === HOVER-BASED VISIBILITY === */
+@media (hover: hover) {
+  .hover\:visible:hover { visibility: visible !important; }
+  .hover\:invisible:hover { visibility: hidden !important; }
+  .hover\:opacity-0:hover { opacity: 0 !important; }
+  .hover\:opacity-100:hover { opacity: 1 !important; }
+  
+  .hover-show { 
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+  
+  .hover-trigger:hover .hover-show {
+    opacity: 1;
+  }
+  
+  .hover-hide {
+    opacity: 1;
+    transition: opacity var(--transition-normal);
+  }
+  
+  .hover-trigger:hover .hover-hide {
+    opacity: 0;
+  }
+}
+
+/* === FOCUS-BASED VISIBILITY === */
+.focus\:visible:focus { visibility: visible !important; }
+.focus\:invisible:focus { visibility: hidden !important; }
+.focus\:opacity-0:focus { opacity: 0 !important; }
+.focus\:opacity-100:focus { opacity: 1 !important; }
+
+.focus-visible:focus-visible { visibility: visible !important; }
+.focus-hidden:focus { visibility: hidden !important; }
+
+/* === GROUP VISIBILITY === */
+.group:hover .group-hover\:visible { visibility: visible !important; }
+.group:hover .group-hover\:invisible { visibility: hidden !important; }
+.group:hover .group-hover\:opacity-0 { opacity: 0 !important; }
+.group:hover .group-hover\:opacity-100 { opacity: 1 !important; }
+
+.group:focus .group-focus\:visible { visibility: visible !important; }
+.group:focus .group-focus\:invisible { visibility: hidden !important; }
+
+/* === TORNADO-THEMED VISIBILITY === */
+
+/* Conditional visibility for tornado warnings */
+.tornado-warning-visible {
+  display: none !important;
+}
+
+.tornado-warning-active .tornado-warning-visible {
+  display: block !important;
+  animation: warning-flash 1s infinite;
+}
+
+@keyframes warning-flash {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.7; }
+}
+
+/* Safety mode visibility */
+.safety-mode .danger-content {
+  display: none !important;
+}
+
+.safety-mode .safe-content {
+  display: block !important;
+}
+
+/* Educational level visibility */
+.level-beginner .advanced-content {
+  display: none !important;
+}
+
+.level-advanced .beginner-content {
+  display: none !important;
+}
+
+.level-expert .beginner-content,
+.level-expert .intermediate-content {
+  display: none !important;
+}
+
+/* Quiz state visibility */
+.quiz-incomplete .quiz-results {
+  display: none !important;
+}
+
+.quiz-complete .quiz-questions {
+  display: none !important;
+}
+
+.quiz-complete .quiz-results {
+  display: block !important;
+}
+
+/* Simulation state visibility */
+.simulation-stopped .simulation-running-only {
+  display: none !important;
+}
+
+.simulation-running .simulation-stopped-only {
+  display: none !important;
+}
+
+/* Scale comparison visibility */
+.scale-mode-single .scale-comparison {
+  display: none !important;
+}
+
+.scale-mode-compare .scale-single {
+  display: none !important;
+}
+
+/* === ACCESSIBILITY-BASED VISIBILITY === */
+
+/* Show only for screen readers */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sr-only-focusable:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: inherit !important;
+  margin: inherit !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
+
+/* Hide from screen readers but keep visual */
+.aria-hidden {
+  aria-hidden: true;
+}
+
+/* Reduced motion visibility */
+@media (prefers-reduced-motion: reduce) {
+  .motion-only { display: none !important; }
+  .motion-safe { display: block !important; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-safe { display: none !important; }
+  .motion-only { display: block !important; }
+}
+
+/* High contrast visibility */
+@media (prefers-contrast: high) {
+  .high-contrast-hidden { display: none !important; }
+  .high-contrast-only { display: block !important; }
+}
+
+@media (prefers-contrast: no-preference) {
+  .high-contrast-only { display: none !important; }
+}
+
+/* === JAVASCRIPT STATE VISIBILITY === */
+
+/* Classes controlled by JavaScript */
+.js-hidden { display: none !important; }
+.js-visible { display: block !important; }
+.js-fade-in { 
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+.js-fade-in.active { opacity: 1; }
+
+.js-slide-down {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-normal);
+}
+.js-slide-down.active { max-height: 1000px; }
+
+.js-scale-in {
+  transform: scale(0);
+  transition: transform var(--transition-spring);
+}
+.js-scale-in.active { transform: scale(1); }
+
+/* Loading states */
+.loading .loaded-content { display: none !important; }
+.loading .loading-content { display: block !important; }
+.loaded .loading-content { display: none !important; }
+.loaded .loaded-content { display: block !important; }
+
+/* Error states */
+.error .normal-content { display: none !important; }
+.error .error-content { display: block !important; }
+.success .error-content { display: none !important; }
+
+/* === UTILITY COMBINATIONS === */
+
+/* Fade transitions */
+.fade-enter {
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+.fade-enter.active { opacity: 1; }
+
+.fade-exit {
+  opacity: 1;
+  transition: opacity var(--transition-normal);
+}
+.fade-exit.active { opacity: 0; }
+
+/* Slide transitions */
+.slide-up-enter {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all var(--transition-normal);
+}
+.slide-up-enter.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-down-enter {
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all var(--transition-normal);
+}
+.slide-down-enter.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Scale transitions */
+.scale-enter {
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all var(--transition-spring);
+}
+.scale-enter.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* === CONDITIONAL VISIBILITY HELPERS === */
+
+/* Show/hide based on data attributes */
+[data-visible="true"] { display: block !important; }
+[data-visible="false"] { display: none !important; }
+[data-hidden="true"] { display: none !important; }
+[data-hidden="false"] { display: block !important; }
+
+/* Toggle visibility */
+.toggle-hidden { display: none !important; }
+.toggle-visible { display: block !important; }
+
+/* Conditional based on parent state */
+.parent-active .child-show-on-active { display: block !important; }
+.parent-active .child-hide-on-active { display: none !important; }
+.parent-inactive .child-show-on-active { display: none !important; }
+.parent-inactive .child-hide-on-active { display: block !important; }

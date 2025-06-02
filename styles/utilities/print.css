@@ -1,0 +1,675 @@
+/* ===== PRINT STYLES ===== */
+
+@media print {
+  
+  /* === BASIC PRINT RESET === */
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    -ms-filter: none !important;
+  }
+  
+  /* === PAGE SETUP === */
+  @page {
+    margin: 0.5in;
+    size: auto;
+  }
+  
+  @page :first {
+    margin-top: 1in;
+  }
+  
+  @page :left {
+    margin-left: 1.5in;
+    margin-right: 1in;
+  }
+  
+  @page :right {
+    margin-left: 1in;
+    margin-right: 1.5in;
+  }
+  
+  /* === BODY AND LAYOUT === */
+  html {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: black;
+    background: white;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* === HIDE INTERACTIVE ELEMENTS === */
+  .site-header,
+  .site-footer,
+  .primary-nav,
+  .mobile-nav,
+  .mobile-nav-toggle,
+  .nav-dropdown,
+  .sidebar-nav,
+  .breadcrumbs,
+  .btn,
+  .form-input,
+  .form-select,
+  .form-textarea,
+  .tooltip,
+  .modal,
+  .popup,
+  .simulator-layout,
+  .simulator-controls,
+  .simulator-canvas,
+  .interactive-element,
+  .hover-effect,
+  .animation,
+  .video,
+  .audio,
+  .no-print {
+    display: none !important;
+  }
+  
+  /* === TYPOGRAPHY === */
+  h1 {
+    font-size: 24pt;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin: 0 0 24pt 0;
+    page-break-after: avoid;
+    background: none;
+    -webkit-text-fill-color: black;
+  }
+  
+  h2 {
+    font-size: 18pt;
+    font-weight: bold;
+    color: black;
+    margin: 18pt 0 12pt 0;
+    page-break-after: avoid;
+  }
+  
+  h3 {
+    font-size: 16pt;
+    font-weight: bold;
+    color: black;
+    margin: 16pt 0 8pt 0;
+    page-break-after: avoid;
+  }
+  
+  h4 {
+    font-size: 14pt;
+    font-weight: bold;
+    color: black;
+    margin: 14pt 0 8pt 0;
+    page-break-after: avoid;
+  }
+  
+  h5, h6 {
+    font-size: 12pt;
+    font-weight: bold;
+    color: black;
+    margin: 12pt 0 6pt 0;
+    page-break-after: avoid;
+  }
+  
+  p {
+    font-size: 12pt;
+    line-height: 1.5;
+    margin: 0 0 12pt 0;
+    text-align: justify;
+    orphans: 3;
+    widows: 3;
+  }
+  
+  .lead {
+    font-size: 14pt;
+    font-weight: normal;
+    font-style: italic;
+    text-align: center;
+    margin: 0 0 18pt 0;
+  }
+  
+  /* === LISTS === */
+  ul, ol {
+    margin: 12pt 0;
+    padding-left: 24pt;
+  }
+  
+  li {
+    margin-bottom: 6pt;
+    line-height: 1.4;
+  }
+  
+  ul li::marker {
+    color: black;
+  }
+  
+  ol li::marker {
+    color: black;
+    font-weight: bold;
+  }
+  
+  /* === LINKS === */
+  a {
+    color: black !important;
+    text-decoration: underline;
+    font-weight: normal;
+  }
+  
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #666;
+    font-style: italic;
+  }
+  
+  a[href^="mailto"]:after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #666;
+    font-style: italic;
+  }
+  
+  /* Don't show URLs for internal links */
+  a[href^="#"]:after,
+  a[href^="/"]:after {
+    content: "";
+  }
+  
+  /* === TABLES === */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12pt 0;
+    font-size: 10pt;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 6pt;
+    text-align: left;
+    vertical-align: top;
+  }
+  
+  th {
+    background: #f0f0f0 !important;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Zebra striping for tables */
+  tr:nth-child(even) td {
+    background: #f9f9f9 !important;
+  }
+  
+  /* === IMAGES === */
+  img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid black;
+    margin: 12pt 0;
+    page-break-inside: avoid;
+  }
+  
+  .tornado-image,
+  .educational-image {
+    width: 100%;
+    max-width: 4in;
+    display: block;
+    margin: 12pt auto;
+  }
+  
+  /* === PAGE BREAKS === */
+  .page-break-before {
+    page-break-before: always;
+  }
+  
+  .page-break-after {
+    page-break-after: always;
+  }
+  
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+  
+  /* Avoid breaks after headings */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  
+  /* Avoid breaks inside important content */
+  .definition,
+  .fact-box,
+  .warning-box,
+  .danger-box,
+  .safety-instruction,
+  .educational-emphasis,
+  .quiz-question,
+  blockquote {
+    page-break-inside: avoid;
+  }
+  
+  /* Force breaks before major sections */
+  .section,
+  .chapter {
+    page-break-before: always;
+  }
+  
+  /* === EDUCATIONAL CONTENT === */
+  .definition {
+    border: 2pt solid black;
+    padding: 12pt;
+    margin: 12pt 0;
+    background: #f9f9f9 !important;
+    page-break-inside: avoid;
+  }
+  
+  .definition::before {
+    content: "DEFINITION: ";
+    font-weight: bold;
+    font-size: 11pt;
+    text-transform: uppercase;
+  }
+  
+  .fact-box {
+    border-left: 4pt solid black;
+    padding: 8pt 12pt;
+    margin: 12pt 0;
+    background: #f5f5f5 !important;
+    font-style: italic;
+  }
+  
+  .fact-box::before {
+    content: "FACT: ";
+    font-weight: bold;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+  
+  .warning-box {
+    border: 3pt solid black;
+    padding: 12pt;
+    margin: 12pt 0;
+    background: #f0f0f0 !important;
+    font-weight: bold;
+  }
+  
+  .warning-box::before {
+    content: "⚠ WARNING: ";
+    font-size: 14pt;
+    display: block;
+    margin-bottom: 6pt;
+  }
+  
+  .danger-box {
+    border: 4pt double black;
+    padding: 12pt;
+    margin: 12pt 0;
+    background: #e8e8e8 !important;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .danger-box::before {
+    content: "🚨 DANGER: ";
+    font-size: 16pt;
+    display: block;
+    margin-bottom: 6pt;
+    text-transform: uppercase;
+  }
+  
+  /* === FUJITA SCALE === */
+  .ef-scale-grid {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12pt 0;
+  }
+  
+  .ef-scale-item {
+    display: table-row;
+    border: 1px solid black;
+  }
+  
+  .ef-rating {
+    display: table-cell;
+    width: 15%;
+    padding: 6pt;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14pt;
+    border: 1px solid black;
+    vertical-align: middle;
+  }
+  
+  .ef-description {
+    display: table-cell;
+    padding: 6pt;
+    border: 1px solid black;
+    vertical-align: middle;
+  }
+  
+  /* EF Scale backgrounds in grayscale */
+  .ef0 .ef-rating { background: #f0f0f0 !important; }
+  .ef1 .ef-rating { background: #e0e0e0 !important; }
+  .ef2 .ef-rating { background: #d0d0d0 !important; }
+  .ef3 .ef-rating { background: #c0c0c0 !important; }
+  .ef4 .ef-rating { background: #b0b0b0 !important; }
+  .ef5 .ef-rating { background: #a0a0a0 !important; }
+  
+  /* === QUIZ CONTENT === */
+  .quiz-question {
+    border: 2pt solid black;
+    padding: 12pt;
+    margin: 12pt 0;
+    page-break-inside: avoid;
+  }
+  
+  .quiz-question-title {
+    font-weight: bold;
+    font-size: 13pt;
+    margin-bottom: 8pt;
+  }
+  
+  .quiz-answer {
+    margin: 6pt 0 6pt 18pt;
+    position: relative;
+  }
+  
+  .quiz-answer::before {
+    content: "○ ";
+    position: absolute;
+    left: -18pt;
+    font-weight: bold;
+  }
+  
+  .quiz-answer.correct::before {
+    content: "● ";
+  }
+  
+  .quiz-answer.correct {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  /* === BLOCKQUOTES === */
+  blockquote {
+    border-left: 4pt solid black;
+    padding: 8pt 12pt;
+    margin: 12pt 24pt;
+    font-style: italic;
+    font-size: 11pt;
+    page-break-inside: avoid;
+  }
+  
+  blockquote::before {
+    content: open-quote;
+    font-size: 24pt;
+    line-height: 0;
+    margin-right: 6pt;
+    vertical-align: -12pt;
+  }
+  
+  blockquote cite {
+    display: block;
+    text-align: right;
+    margin-top: 6pt;
+    font-style: normal;
+    font-size: 10pt;
+  }
+  
+  blockquote cite::before {
+    content: "— ";
+  }
+  
+  /* === CODE AND PRE === */
+  code {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 10pt;
+    background: #f5f5f5 !important;
+    border: 1px solid black;
+    padding: 2pt;
+  }
+  
+  pre {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 9pt;
+    background: #f5f5f5 !important;
+    border: 1px solid black;
+    padding: 8pt;
+    margin: 12pt 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    page-break-inside: avoid;
+  }
+  
+  /* === CARDS === */
+  .card {
+    border: 2pt solid black;
+    margin: 12pt 0;
+    page-break-inside: avoid;
+  }
+  
+  .card-header {
+    background: #f0f0f0 !important;
+    border-bottom: 1pt solid black;
+    padding: 8pt 12pt;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .card-body {
+    padding: 12pt;
+  }
+  
+  .card-footer {
+    background: #f9f9f9 !important;
+    border-top: 1pt solid black;
+    padding: 6pt 12pt;
+    font-size: 10pt;
+    text-align: center;
+  }
+  
+  /* === UTILITIES === */
+  .print-only {
+    display: block !important;
+  }
+  
+  .screen-only {
+    display: none !important;
+  }
+  
+  .print-break-before {
+    page-break-before: always;
+  }
+  
+  .print-break-after {
+    page-break-after: always;
+  }
+  
+  .print-no-break {
+    page-break-inside: avoid;
+  }
+  
+  .print-center {
+    text-align: center;
+  }
+  
+  .print-left {
+    text-align: left;
+  }
+  
+  .print-right {
+    text-align: right;
+  }
+  
+  .print-justify {
+    text-align: justify;
+  }
+  
+  /* === HEADER AND FOOTER CONTENT === */
+  .print-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.5in;
+    text-align: center;
+    font-size: 10pt;
+    border-bottom: 1pt solid black;
+    padding: 6pt;
+    background: white;
+  }
+  
+  .print-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.5in;
+    text-align: center;
+    font-size: 10pt;
+    border-top: 1pt solid black;
+    padding: 6pt;
+    background: white;
+  }
+  
+  /* Page numbers */
+  .print-footer::after {
+    content: "Page " counter(page) " of " counter(pages);
+  }
+  
+  /* === TORNADO-SPECIFIC PRINT STYLES === */
+  .tornado-title::before {
+    content: "🌪️ ";
+    font-size: 18pt;
+  }
+  
+  .safety-title::before {
+    content: "🛡️ ";
+    font-size: 16pt;
+  }
+  
+  .warning-title::before {
+    content: "⚠️ ";
+    font-size: 16pt;
+  }
+  
+  /* === EDUCATIONAL PRINT NOTES === */
+  .print-note {
+    border: 1pt dashed black;
+    padding: 8pt;
+    margin: 8pt 0;
+    font-size: 10pt;
+    background: #f9f9f9 !important;
+  }
+  
+  .print-note::before {
+    content: "NOTE: ";
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Study guide formatting */
+  .study-guide {
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+  
+  .study-guide h2 {
+    background: #f0f0f0 !important;
+    padding: 6pt;
+    border: 1pt solid black;
+  }
+  
+  .study-guide .key-term {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  /* === REFERENCE MATERIALS === */
+  .reference-list {
+    font-size: 10pt;
+    line-height: 1.3;
+  }
+  
+  .reference-item {
+    margin-bottom: 6pt;
+    text-indent: -18pt;
+    padding-left: 18pt;
+  }
+  
+  /* === PRINT OPTIMIZATION === */
+  .avoid-break {
+    page-break-inside: avoid;
+    orphans: 3;
+    widows: 3;
+  }
+  
+  .force-break {
+    page-break-before: always;
+  }
+  
+  /* Ensure proper spacing for educational flow */
+  .lesson-section {
+    margin-bottom: 18pt;
+    page-break-inside: avoid;
+  }
+  
+  .chapter-end {
+    page-break-after: always;
+    text-align: center;
+    font-weight: bold;
+    margin: 24pt 0;
+  }
+  
+  .chapter-end::after {
+    content: "— End of Chapter —";
+    display: block;
+    font-style: italic;
+    margin-top: 12pt;
+  }
+}
+
+/* === PRINT PREVIEW MODE === */
+.print-preview {
+  background: white;
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
+  line-height: 1.5;
+  max-width: 8.5in;
+  margin: 0 auto;
+  padding: 1in;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.print-preview * {
+  background: transparent !important;
+  color: black !important;
+  box-shadow: none !important;
+}
+
+.print-preview .no-print {
+  display: none !important;
+}
+
+.print-preview .print-only {
+  display: block !important;
+}
