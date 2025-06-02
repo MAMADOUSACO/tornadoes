@@ -1,0 +1,901 @@
+/* ===== METEOROLOGY BASICS PAGE ===== */
+
+/* === PAGE LAYOUT === */
+.meteorology-page {
+  background: linear-gradient(to bottom, var(--sky-clear) 0%, var(--cloud-white) 30%, var(--off-white) 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+.meteorology-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="30" cy="40" r="8" fill="white" opacity="0.1"/><circle cx="170" cy="30" r="6" fill="white" opacity="0.15"/><circle cx="50" cy="180" r="10" fill="white" opacity="0.08"/><circle cx="150" cy="160" r="7" fill="white" opacity="0.12"/><circle cx="20" cy="120" r="5" fill="white" opacity="0.1"/></svg>');
+  animation: atmospheric-drift 25s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes atmospheric-drift {
+  0% { transform: translateX(-5%) translateY(-2%); }
+  100% { transform: translateX(5%) translateY(2%); }
+}
+
+/* === HERO SECTION === */
+.meteorology-hero {
+  background: var(--gradient-storm);
+  color: var(--white);
+  padding: var(--space-4xl) 0 var(--space-6xl) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.meteorology-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(135, 206, 235, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.2) 0%, transparent 50%);
+  animation: atmospheric-patterns 15s ease-in-out infinite;
+}
+
+@keyframes atmospheric-patterns {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.05) rotate(1deg); }
+}
+
+.meteorology-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: var(--font-weight-extrabold);
+  margin-bottom: var(--space-lg);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.meteorology-title::before {
+  content: '🌡️';
+  display: inline-block;
+  margin-right: var(--space-md);
+  animation: temperature-change 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+@keyframes temperature-change {
+  0%, 100% { transform: scale(1) rotate(-5deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+}
+
+.meteorology-subtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  opacity: 0.9;
+  font-weight: var(--font-weight-light);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+  position: relative;
+  z-index: 2;
+}
+
+/* === CORE CONCEPTS SECTION === */
+.core-concepts {
+  padding: var(--space-4xl) 0;
+  background: var(--white);
+  position: relative;
+}
+
+.core-concepts::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: var(--gradient-storm);
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+}
+
+.concepts-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.concepts-intro {
+  text-align: center;
+  margin-bottom: var(--space-4xl);
+  padding-top: var(--space-2xl);
+}
+
+.concepts-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-lg);
+}
+
+.concepts-description {
+  font-size: var(--font-size-lg);
+  color: var(--storm-medium);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+}
+
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-2xl);
+}
+
+.concept-card {
+  background: var(--white);
+  border: 2px solid var(--light-gray);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-medium);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--info-blue) 0%, var(--sky-clear) 100%);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+  transform-origin: left;
+}
+
+.concept-card:hover::before {
+  transform: scaleX(1);
+}
+
+.concept-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-heavy);
+  border-color: var(--tornado-core);
+}
+
+.concept-icon {
+  font-size: var(--font-size-6xl);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  display: block;
+  animation: concept-float 4s ease-in-out infinite;
+}
+
+@keyframes concept-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.concept-card:nth-child(1) .concept-icon::after { content: '🌡️'; }
+.concept-card:nth-child(2) .concept-icon::after { content: '📊'; }
+.concept-card:nth-child(3) .concept-icon::after { content: '💨'; }
+.concept-card:nth-child(4) .concept-icon::after { content: '🌫️'; }
+
+.concept-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.concept-description {
+  color: var(--dark-gray);
+  line-height: var(--line-height-relaxed);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.concept-details {
+  background: var(--gradient-sky);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border-left: 4px solid var(--info-blue);
+}
+
+.details-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-md);
+}
+
+.details-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.details-list li {
+  padding: var(--space-sm) 0;
+  color: var(--storm-medium);
+  position: relative;
+  padding-left: var(--space-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.details-list li::before {
+  content: '🔸';
+  position: absolute;
+  left: 0;
+  font-size: var(--font-size-sm);
+}
+
+/* === ATMOSPHERIC LAYERS === */
+.atmospheric-layers {
+  background: var(--gradient-sky);
+  padding: var(--space-4xl) 0;
+  position: relative;
+}
+
+.layers-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.layers-title {
+  text-align: center;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-2xl);
+}
+
+.atmosphere-diagram {
+  background: linear-gradient(to top, 
+    var(--radar-green) 0%, 
+    var(--radar-yellow) 20%, 
+    var(--radar-orange) 40%, 
+    var(--info-blue) 60%, 
+    var(--storm-dark) 100%
+  );
+  border: 2px solid var(--storm-medium);
+  border-radius: var(--radius-2xl);
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--space-2xl);
+}
+
+.atmosphere-diagram::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.1) 10px,
+    rgba(255, 255, 255, 0.1) 12px
+  );
+  pointer-events: none;
+}
+
+.atmosphere-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-xl);
+  color: var(--white);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.atmosphere-layer:hover {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.layer-troposphere {
+  bottom: 0;
+  height: 20%;
+  background: rgba(144, 238, 144, 0.3);
+}
+
+.layer-stratosphere {
+  bottom: 20%;
+  height: 20%;
+  background: rgba(255, 255, 0, 0.2);
+}
+
+.layer-mesosphere {
+  bottom: 40%;
+  height: 20%;
+  background: rgba(255, 165, 0, 0.2);
+}
+
+.layer-thermosphere {
+  bottom: 60%;
+  height: 40%;
+  background: rgba(74, 144, 226, 0.2);
+}
+
+.layer-name {
+  font-size: var(--font-size-lg);
+  margin-right: var(--space-md);
+}
+
+.layer-description {
+  font-size: var(--font-size-sm);
+  opacity: 0.9;
+}
+
+.layer-altitude {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  background: rgba(0, 0, 0, 0.3);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+}
+
+/* === WEATHER FRONTS === */
+.weather-fronts {
+  background: var(--white);
+  padding: var(--space-4xl) 0;
+}
+
+.fronts-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.fronts-title {
+  text-align: center;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-2xl);
+}
+
+.fronts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+
+.front-card {
+  background: var(--white);
+  border: 2px solid var(--light-gray);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-medium);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.front-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  transition: all var(--transition-normal);
+}
+
+.front-card.cold::before {
+  background: linear-gradient(90deg, var(--info-blue) 0%, var(--sky-clear) 100%);
+}
+
+.front-card.warm::before {
+  background: linear-gradient(90deg, var(--tornado-core) 0%, var(--warning-orange) 100%);
+}
+
+.front-card.occluded::before {
+  background: linear-gradient(90deg, var(--radar-purple) 0%, var(--storm-medium) 100%);
+}
+
+.front-card.stationary::before {
+  background: linear-gradient(90deg, var(--info-blue) 0%, var(--tornado-core) 50%, var(--info-blue) 100%);
+}
+
+.front-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-heavy);
+  border-color: var(--tornado-core);
+}
+
+.front-card:hover::before {
+  height: 12px;
+}
+
+.front-icon {
+  font-size: var(--font-size-5xl);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  display: block;
+}
+
+.front-card.cold .front-icon::after { content: '❄️'; }
+.front-card.warm .front-icon::after { content: '🌡️'; }
+.front-card.occluded .front-icon::after { content: '🌀'; }
+.front-card.stationary .front-icon::after { content: '⚖️'; }
+
+.front-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.front-description {
+  color: var(--dark-gray);
+  line-height: var(--line-height-relaxed);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.front-characteristics {
+  background: var(--light-gray);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.characteristics-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.characteristics-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.characteristics-list li {
+  padding: var(--space-sm) 0;
+  color: var(--storm-medium);
+  position: relative;
+  padding-left: var(--space-lg);
+  text-align: left;
+}
+
+.characteristics-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--tornado-core);
+  font-weight: var(--font-weight-bold);
+}
+
+/* === PRESSURE SYSTEMS === */
+.pressure-systems {
+  background: var(--gradient-storm);
+  color: var(--white);
+  padding: var(--space-4xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.pressure-systems::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(220, 20, 60, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(74, 144, 226, 0.2) 0%, transparent 50%);
+  animation: pressure-patterns 20s ease-in-out infinite;
+}
+
+@keyframes pressure-patterns {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+}
+
+.pressure-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.pressure-title {
+  text-align: center;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-2xl);
+  color: var(--cloud-white);
+}
+
+.pressure-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-3xl);
+}
+
+.pressure-system {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.pressure-system:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.pressure-system.high::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(74, 144, 226, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: high-pressure-spin 10s linear infinite;
+  pointer-events: none;
+}
+
+.pressure-system.low::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(220, 20, 60, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: low-pressure-spin 8s linear infinite reverse;
+  pointer-events: none;
+}
+
+@keyframes high-pressure-spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes low-pressure-spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.pressure-icon {
+  font-size: var(--font-size-6xl);
+  margin-bottom: var(--space-lg);
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+.pressure-system.high .pressure-icon::after { content: '🔵'; }
+.pressure-system.low .pressure-icon::after { content: '🔴'; }
+
+.pressure-label {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-md);
+  color: var(--sky-warning);
+  position: relative;
+  z-index: 2;
+}
+
+.pressure-description {
+  color: var(--cloud-white);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.pressure-effects {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.effects-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--sky-warning);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.effects-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.effects-list li {
+  padding: var(--space-sm) 0;
+  color: var(--cloud-white);
+  position: relative;
+  padding-left: var(--space-lg);
+  text-align: left;
+}
+
+.effects-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--sky-warning);
+  font-weight: var(--font-weight-bold);
+}
+
+/* === WIND PATTERNS === */
+.wind-patterns {
+  background: var(--white);
+  padding: var(--space-4xl) 0;
+}
+
+.wind-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.wind-title {
+  text-align: center;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-2xl);
+}
+
+.wind-visualization {
+  background: var(--gradient-sky);
+  border: 2px solid var(--info-blue);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wind-visualization::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%),
+    linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
+  animation: wind-flow 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes wind-flow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.wind-diagram {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.wind-icon {
+  font-size: var(--font-size-6xl);
+  color: var(--info-blue);
+  margin-bottom: var(--space-lg);
+  animation: wind-sway 3s ease-in-out infinite;
+}
+
+@keyframes wind-sway {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+}
+
+.wind-description {
+  font-size: var(--font-size-xl);
+  color: var(--storm-dark);
+  background: rgba(255, 255, 255, 0.9);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.wind-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-xl);
+}
+
+.wind-type {
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  text-align: center;
+  box-shadow: var(--shadow-light);
+  transition: all var(--transition-normal);
+}
+
+.wind-type:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+  border-color: var(--info-blue);
+}
+
+.wind-type-icon {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.wind-type:nth-child(1) .wind-type-icon::after { content: '🌬️'; }
+.wind-type:nth-child(2) .wind-type-icon::after { content: '🌪️'; }
+.wind-type:nth-child(3) .wind-type-icon::after { content: '🌊'; }
+.wind-type:nth-child(4) .wind-type-icon::after { content = '🏔️'; }
+
+.wind-type-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.wind-type-description {
+  color: var(--dark-gray);
+  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-sm);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  .concepts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pressure-comparison {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  
+  .fronts-grid,
+  .wind-types {
+    grid-template-columns: 1fr;
+  }
+  
+  .atmosphere-diagram {
+    height: 400px;
+  }
+  
+  .atmosphere-layer {
+    padding: 0 var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+  
+  .layer-name {
+    font-size: var(--font-size-base);
+  }
+  
+  .wind-visualization {
+    min-height: 300px;
+    padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .meteorology-hero {
+    padding: var(--space-2xl) 0 var(--space-3xl) 0;
+  }
+  
+  .core-concepts,
+  .atmospheric-layers,
+  .weather-fronts,
+  .pressure-systems,
+  .wind-patterns {
+    padding: var(--space-2xl) 0;
+  }
+  
+  .concept-card,
+  .front-card,
+  .wind-type {
+    padding: var(--space-lg);
+    margin: 0 var(--space-sm);
+  }
+  
+  .pressure-system {
+    padding: var(--space-lg);
+  }
+  
+  .atmosphere-diagram {
+    height: 300px;
+  }
+  
+  .atmosphere-layer {
+    padding: 0 var(--space-sm);
+  }
+  
+  .layer-description {
+    display: none;
+  }
+}
+
+/* === PRINT STYLES === */
+@media print {
+  .meteorology-page {
+    background: white !important;
+  }
+  
+  .meteorology-hero {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .meteorology-title::before {
+    content: 'METEOROLOGY BASICS: ';
+    animation: none;
+  }
+  
+  .pressure-systems {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .atmosphere-diagram {
+    background: linear-gradient(to top, #e0e0e0 0%, #f0f0f0 100%) !important;
+    border: 2pt solid black;
+  }
+  
+  .concept-card,
+  .front-card,
+  .pressure-system,
+  .wind-type {
+    break-inside: avoid;
+    border: 1pt solid black;
+    background: white !important;
+  }
+  
+  .meteorology-hero::before,
+  .atmospheric-patterns,
+  .concept-float,
+  .wind-flow {
+    display: none;
+  }
+}

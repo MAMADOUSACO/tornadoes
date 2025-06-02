@@ -1,0 +1,836 @@
+/* ===== GEOGRAPHY PAGE - REGIONAL TORNADO PATTERNS ===== */
+
+/* === PAGE LAYOUT === */
+.geography-page {
+  background: linear-gradient(to bottom, var(--sky-clear) 0%, var(--cloud-white) 50%, var(--wind-light) 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+.geography-header {
+  background: var(--gradient-storm);
+  color: var(--white);
+  padding: var(--space-4xl) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.geography-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="20" r="1.5" fill="white" opacity="0.2"/><circle cx="30" cy="10" r="2" fill="white" opacity="0.15"/><circle cx="70" cy="30" r="1" fill="white" opacity="0.25"/><circle cx="90" cy="15" r="1.5" fill="white" opacity="0.1"/><circle cx="50" cy="40" r="2.5" fill="white" opacity="0.3"/></svg>');
+  animation: geographic-drift 25s linear infinite;
+}
+
+@keyframes geographic-drift {
+  0% { transform: translateX(-5%) translateY(-2%); }
+  100% { transform: translateX(5%) translateY(2%); }
+}
+
+.geography-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: var(--font-weight-extrabold);
+  margin-bottom: var(--space-lg);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.geography-title::before {
+  content: '🗺️';
+  display: inline-block;
+  margin-right: var(--space-md);
+  animation: map-rotate 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+@keyframes map-rotate {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.geography-subtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  opacity: 0.9;
+  font-weight: var(--font-weight-light);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+  position: relative;
+  z-index: 2;
+}
+
+/* === TORNADO ALLEY SECTION === */
+.tornado-alley-section {
+  padding: var(--space-4xl) 0;
+  background: var(--white);
+  position: relative;
+}
+
+.tornado-alley-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: var(--gradient-storm);
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+}
+
+.alley-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.alley-intro {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+  padding-top: var(--space-2xl);
+}
+
+.alley-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.alley-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--tornado-core) 0%, var(--sky-warning) 100%);
+  border-radius: var(--radius-full);
+}
+
+.alley-description {
+  font-size: var(--font-size-lg);
+  color: var(--storm-medium);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+}
+
+.alley-visualization {
+  background: var(--gradient-sky);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-2xl);
+  margin: var(--space-2xl) 0;
+  border: 2px solid var(--info-blue);
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.alley-visualization::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: conic-gradient(from 0deg, transparent, rgba(135, 206, 235, 0.1), transparent);
+  animation: tornado-spin 30s linear infinite;
+  pointer-events: none;
+}
+
+.alley-map {
+  position: relative;
+  z-index: 2;
+  height: 450px;
+  background: linear-gradient(135deg, var(--wind-light) 0%, var(--cloud-white) 100%);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--medium-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.map-placeholder {
+  text-align: center;
+  color: var(--storm-medium);
+}
+
+.map-placeholder-icon {
+  font-size: var(--font-size-6xl);
+  color: var(--tornado-core);
+  margin-bottom: var(--space-lg);
+  animation: map-pulse 3s ease-in-out infinite;
+}
+
+@keyframes map-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.map-placeholder-text {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-md);
+}
+
+.map-placeholder-description {
+  font-size: var(--font-size-base);
+  opacity: 0.8;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+}
+
+/* === REGIONAL STATISTICS === */
+.regional-stats {
+  background: var(--gradient-sky);
+  padding: var(--space-4xl) 0;
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.stats-title {
+  text-align: center;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-2xl);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+}
+
+.state-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-medium);
+  border: 1px solid var(--light-gray);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.state-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--safe-green) 0%, var(--sky-warning) 30%, var(--warning-orange) 60%, var(--tornado-core) 100%);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+  transform-origin: left;
+}
+
+.state-card:hover::before {
+  transform: scaleX(1);
+}
+
+.state-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-heavy);
+  border-color: var(--tornado-core);
+}
+
+.state-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.state-name {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+}
+
+.state-rank {
+  background: var(--tornado-core);
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  box-shadow: var(--shadow-light);
+}
+
+.state-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.stat-item {
+  text-align: center;
+  padding: var(--space-md);
+  background: var(--light-gray);
+  border-radius: var(--radius-md);
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--tornado-core);
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.stat-label {
+  font-size: var(--font-size-xs);
+  color: var(--storm-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: var(--font-weight-semibold);
+}
+
+.state-intensity-bar {
+  background: var(--light-gray);
+  height: 8px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-sm);
+}
+
+.intensity-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--safe-green) 0%, var(--sky-warning) 40%, var(--tornado-core) 100%);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
+  animation: intensity-grow 2s ease-out;
+}
+
+@keyframes intensity-grow {
+  0% { width: 0%; }
+  100% { width: var(--intensity-width, 50%); }
+}
+
+.intensity-label {
+  font-size: var(--font-size-xs);
+  color: var(--medium-gray);
+  text-align: center;
+}
+
+/* === SEASONAL PATTERNS === */
+.seasonal-patterns {
+  background: var(--white);
+  padding: var(--space-4xl) 0;
+}
+
+.seasonal-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.seasonal-title {
+  text-align: center;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-2xl);
+}
+
+.seasonal-chart {
+  background: var(--gradient-sky);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+  border: 1px solid var(--info-blue);
+}
+
+.chart-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-dark);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.seasonal-bars {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-sm);
+  height: 200px;
+  align-items: end;
+  padding: var(--space-lg);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-lg);
+}
+
+.seasonal-bar {
+  background: linear-gradient(to top, var(--info-blue) 0%, var(--tornado-core) 100%);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  min-height: 10px;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  position: relative;
+  transform-origin: bottom;
+  animation: bar-grow var(--transition-slow) ease-out;
+}
+
+@keyframes bar-grow {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.seasonal-bar:hover {
+  background: linear-gradient(to top, var(--tornado-core) 0%, var(--tornado-swirl) 100%);
+  transform: scaleY(1.05);
+  box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+}
+
+.seasonal-bar.peak {
+  background: linear-gradient(to top, var(--tornado-core) 0%, var(--sky-warning) 100%);
+  animation: peak-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes peak-glow {
+  0% { box-shadow: 0 0 5px var(--tornado-core); }
+  100% { box-shadow: 0 0 15px var(--tornado-core); }
+}
+
+.bar-label {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-xs);
+  color: var(--storm-medium);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.bar-value {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--storm-dark);
+  color: var(--white);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  white-space: nowrap;
+  z-index: var(--z-tooltip);
+}
+
+.seasonal-bar:hover .bar-value {
+  opacity: 1;
+}
+
+/* === CLIMATE FACTORS === */
+.climate-factors {
+  background: var(--gradient-storm);
+  color: var(--white);
+  padding: var(--space-4xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.climate-factors::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(255, 140, 0, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(135, 206, 235, 0.15) 0%, transparent 50%);
+  animation: climate-shift 15s ease-in-out infinite;
+}
+
+@keyframes climate-shift {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.05) rotate(1deg); }
+}
+
+.climate-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.climate-title {
+  text-align: center;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-2xl);
+  color: var(--cloud-white);
+}
+
+.climate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+
+.climate-factor {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-normal);
+  text-align: center;
+}
+
+.climate-factor:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.factor-icon {
+  font-size: var(--font-size-5xl);
+  margin-bottom: var(--space-lg);
+  display: block;
+  animation: factor-float 4s ease-in-out infinite;
+}
+
+@keyframes factor-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.factor-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-md);
+  color: var(--sky-warning);
+}
+
+.factor-description {
+  color: var(--cloud-white);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-lg);
+}
+
+.factor-impact {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border-left: 4px solid var(--sky-warning);
+}
+
+.impact-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--sky-warning);
+  margin-bottom: var(--space-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.impact-value {
+  font-size: var(--font-size-base);
+  color: var(--cloud-white);
+}
+
+/* === REGIONAL COMPARISON === */
+.regional-comparison {
+  background: var(--white);
+  padding: var(--space-4xl) 0;
+}
+
+.comparison-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.comparison-title {
+  text-align: center;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-2xl);
+}
+
+.comparison-table {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-heavy);
+  border: 1px solid var(--light-gray);
+}
+
+.table-header {
+  background: var(--gradient-sky);
+  padding: var(--space-lg);
+  text-align: center;
+  border-bottom: 2px solid var(--info-blue);
+}
+
+.table-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-dark);
+}
+
+.comparison-data {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  background: var(--off-white);
+  padding: var(--space-md) var(--space-lg);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-medium);
+  border-bottom: 1px solid var(--light-gray);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.data-table td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--light-gray);
+  color: var(--dark-gray);
+  font-size: var(--font-size-sm);
+}
+
+.data-table tr:hover {
+  background: var(--wind-light);
+}
+
+.ranking-cell {
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
+  color: var(--tornado-core);
+  text-align: center;
+}
+
+.high-risk {
+  color: var(--emergency-red);
+  font-weight: var(--font-weight-bold);
+}
+
+.medium-risk {
+  color: var(--warning-orange);
+  font-weight: var(--font-weight-semibold);
+}
+
+.low-risk {
+  color: var(--safe-green);
+  font-weight: var(--font-weight-medium);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  .alley-visualization {
+    padding: var(--space-lg);
+    min-height: 300px;
+  }
+  
+  .alley-map {
+    height: 250px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .state-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .seasonal-bars {
+    grid-template-columns: repeat(6, 1fr);
+    height: 150px;
+    padding: var(--space-md);
+  }
+  
+  .climate-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .comparison-data {
+    font-size: var(--font-size-xs);
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: var(--space-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .geography-header {
+    padding: var(--space-2xl) 0;
+  }
+  
+  .tornado-alley-section,
+  .regional-stats,
+  .seasonal-patterns,
+  .climate-factors,
+  .regional-comparison {
+    padding: var(--space-2xl) 0;
+  }
+  
+  .state-card,
+  .climate-factor {
+    margin: 0 var(--space-sm);
+  }
+  
+  .seasonal-bars {
+    grid-template-columns: repeat(4, 1fr);
+    height: 120px;
+    gap: var(--space-xs);
+  }
+  
+  .bar-label {
+    font-size: 10px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  
+  .state-header {
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+  }
+  
+  .comparison-table {
+    margin: 0 var(--space-sm);
+    border-radius: var(--radius-lg);
+  }
+}
+
+/* === PRINT STYLES === */
+@media print {
+  .geography-header {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .geography-title::before {
+    content: 'TORNADO GEOGRAPHY: ';
+    animation: none;
+  }
+  
+  .alley-visualization,
+  .seasonal-chart,
+  .climate-factors {
+    background: white !important;
+    border: 2pt solid black;
+  }
+  
+  .alley-visualization::before,
+  .geography-header::before,
+  .climate-factors::before {
+    display: none;
+  }
+  
+  .state-card,
+  .climate-factor {
+    break-inside: avoid;
+    border: 1pt solid black;
+  }
+  
+  .data-table {
+    font-size: 10pt;
+  }
+  
+  .data-table th {
+    background: #f0f0f0 !important;
+  }
+}
+
+/* === ACCESSIBILITY === */
+.seasonal-bar:focus,
+.state-card:focus {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Screen reader support */
+.geography-sr-description {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .state-card,
+  .climate-factor,
+  .comparison-table {
+    border: 3px solid var(--black);
+  }
+  
+  .seasonal-bar {
+    border: 1px solid var(--black);
+  }
+  
+  .data-table th,
+  .data-table td {
+    border: 1px solid var(--black);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .geography-header::before,
+  .geography-title::before,
+  .alley-visualization::before,
+  .climate-factors::before {
+    animation: none;
+  }
+  
+  .map-pulse,
+  .factor-float,
+  .peak-glow,
+  .bar-grow,
+  .intensity-grow {
+    animation: none;
+  }
+  
+  .state-card:hover,
+  .climate-factor:hover {
+    transform: none;
+  }
+}
