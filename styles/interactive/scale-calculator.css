@@ -1,0 +1,613 @@
+/* ===== INTERACTIVE SCALE CALCULATOR ===== */
+
+/* === BASE SCALE CALCULATOR === */
+.scale-calculator {
+  background: var(--white);
+  border: 2px solid var(--light-gray);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-heavy);
+  position: relative;
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.scale-calculator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, 
+    var(--radar-green) 0%, 
+    var(--radar-yellow) 20%, 
+    var(--radar-orange) 40%, 
+    var(--radar-red) 60%, 
+    var(--emergency-red) 80%, 
+    var(--radar-purple) 100%
+  );
+}
+
+.calculator-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 2px solid var(--light-gray);
+}
+
+.calculator-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--storm-dark);
+  margin: 0 0 var(--space-sm) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.calculator-title::before {
+  content: '🌪️';
+  font-size: var(--font-size-3xl);
+  animation: tornado-spin 4s linear infinite;
+}
+
+.calculator-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--medium-gray);
+  margin: 0;
+  font-style: italic;
+}
+
+/* === DAMAGE INDICATORS SECTION === */
+.damage-indicators {
+  margin-bottom: var(--space-2xl);
+}
+
+.indicators-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-medium);
+  margin-bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.indicators-title::before {
+  content: '🏠';
+  font-size: var(--font-size-xl);
+}
+
+.indicators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.indicator-category {
+  background: var(--off-white);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: all var(--transition-normal);
+}
+
+.indicator-category:hover {
+  border-color: var(--tornado-core);
+  box-shadow: var(--shadow-light);
+  transform: translateY(-2px);
+}
+
+.category-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.category-title.buildings::before { content: '🏢'; }
+.category-title.trees::before { content: '🌳'; }
+.category-title.vehicles::before { content: '🚗'; }
+.category-title.debris::before { content: '🪨'; }
+
+.damage-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.damage-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: 1px solid transparent;
+}
+
+.damage-option:hover {
+  background: var(--wind-light);
+  border-color: var(--info-blue);
+}
+
+.damage-option.selected {
+  background: rgba(220, 20, 60, 0.1);
+  border-color: var(--tornado-core);
+  color: var(--tornado-core);
+}
+
+.damage-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--medium-gray);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.damage-checkbox:checked,
+.damage-option.selected .damage-checkbox {
+  background: var(--tornado-core);
+  border-color: var(--tornado-core);
+}
+
+.damage-checkbox:checked::after,
+.damage-option.selected .damage-checkbox::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.damage-label {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-tight);
+  cursor: pointer;
+}
+
+/* === SCALE RESULT DISPLAY === */
+.scale-result {
+  background: var(--gradient-sky);
+  border: 2px solid var(--info-blue);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.scale-result::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: conic-gradient(from 0deg, transparent, rgba(135, 206, 235, 0.2), transparent);
+  animation: tornado-spin 8s linear infinite;
+  pointer-events: none;
+}
+
+.result-content {
+  position: relative;
+  z-index: 1;
+}
+
+.calculated-scale {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-mono);
+  margin-bottom: var(--space-lg);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  animation: scale-pulse 2s ease-in-out infinite;
+}
+
+@keyframes scale-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* EF Scale Colors */
+.calculated-scale.ef0 { color: var(--radar-green); }
+.calculated-scale.ef1 { color: var(--radar-yellow); text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+.calculated-scale.ef2 { color: var(--radar-orange); }
+.calculated-scale.ef3 { color: var(--radar-red); }
+.calculated-scale.ef4 { color: var(--emergency-red); }
+.calculated-scale.ef5 { color: var(--radar-purple); }
+
+.scale-description {
+  font-size: var(--font-size-lg);
+  color: var(--storm-medium);
+  margin-bottom: var(--space-md);
+  font-weight: var(--font-weight-medium);
+}
+
+.wind-speed-range {
+  font-size: var(--font-size-base);
+  color: var(--dark-gray);
+  background: rgba(255, 255, 255, 0.8);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* === WIND SPEED CALCULATOR === */
+.wind-speed-calculator {
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.wind-calculator-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-medium);
+  margin-bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.wind-calculator-title::before {
+  content: '💨';
+  font-size: var(--font-size-xl);
+}
+
+.wind-input-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.wind-input {
+  flex: 1;
+  padding: var(--space-md);
+  border: 2px solid var(--light-gray);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-mono);
+  transition: border-color var(--transition-normal);
+}
+
+.wind-input:focus {
+  border-color: var(--tornado-core);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.1);
+}
+
+.wind-unit {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-medium);
+  min-width: 50px;
+}
+
+.wind-result {
+  background: var(--gradient-storm);
+  color: var(--white);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* === COMPARISON TABLE === */
+.scale-comparison-table {
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-2xl);
+}
+
+.comparison-title {
+  background: var(--gradient-sky);
+  padding: var(--space-lg);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-dark);
+  margin: 0;
+  text-align: center;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: var(--space-md);
+  text-align: center;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.comparison-table th {
+  background: var(--off-white);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-medium);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.comparison-table td {
+  font-size: var(--font-size-sm);
+  color: var(--dark-gray);
+}
+
+.scale-cell {
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  color: var(--white);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.scale-cell.ef0 { background: var(--radar-green); }
+.scale-cell.ef1 { background: var(--radar-yellow); color: var(--dark-gray); text-shadow: none; }
+.scale-cell.ef2 { background: var(--radar-orange); }
+.scale-cell.ef3 { background: var(--radar-red); }
+.scale-cell.ef4 { background: var(--emergency-red); }
+.scale-cell.ef5 { background: var(--radar-purple); }
+
+.wind-speed-cell {
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+  color: var(--tornado-core);
+}
+
+/* === ACTION BUTTONS === */
+.calculator-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.calc-btn {
+  padding: var(--space-md) var(--space-xl);
+  border: 2px solid var(--tornado-core);
+  background: var(--white);
+  color: var(--tornado-core);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.calc-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--tornado-core);
+  transition: left var(--transition-normal);
+  z-index: 1;
+}
+
+.calc-btn:hover::before {
+  left: 0;
+}
+
+.calc-btn span {
+  position: relative;
+  z-index: 2;
+  transition: color var(--transition-normal);
+}
+
+.calc-btn:hover {
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.calc-btn.calculate {
+  background: var(--tornado-core);
+  color: var(--white);
+}
+
+.calc-btn.calculate::before {
+  background: var(--tornado-swirl);
+}
+
+.calc-btn.reset {
+  border-color: var(--medium-gray);
+  color: var(--medium-gray);
+}
+
+.calc-btn.reset::before {
+  background: var(--medium-gray);
+}
+
+/* === DAMAGE EXAMPLES === */
+.damage-examples {
+  background: var(--light-gray);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.examples-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--storm-dark);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+}
+
+.example-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-light);
+  transition: all var(--transition-normal);
+}
+
+.example-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium);
+}
+
+.example-scale {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  color: var(--white);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.example-damage {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--dark-gray);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  .scale-calculator {
+    padding: var(--space-lg);
+    margin: 0 var(--space-sm);
+  }
+  
+  .indicators-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .calculated-scale {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .wind-input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .calculator-actions {
+    flex-direction: column;
+  }
+  
+  .comparison-table {
+    font-size: var(--font-size-xs);
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    padding: var(--space-sm);
+  }
+  
+  .examples-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .calculator-title {
+    font-size: var(--font-size-xl);
+    flex-direction: column;
+  }
+  
+  .scale-result {
+    padding: var(--space-lg);
+  }
+  
+  .calculated-scale {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .damage-option {
+    padding: var(--space-xs) var(--space-sm);
+  }
+  
+  .damage-label {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* === ACCESSIBILITY === */
+.damage-checkbox:focus,
+.wind-input:focus,
+.calc-btn:focus {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.damage-option:focus-within {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .scale-calculator {
+    border: 3px solid var(--black);
+  }
+  
+  .indicator-category,
+  .scale-result,
+  .wind-speed-calculator {
+    border: 2px solid var(--black);
+  }
+  
+  .damage-checkbox {
+    border: 2px solid var(--black);
+  }
+  
+  .calc-btn {
+    border: 3px solid var(--black);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .calculator-title::before,
+  .scale-result::before {
+    animation: none;
+  }
+  
+  .calculated-scale {
+    animation: none;
+  }
+  
+  .indicator-category:hover,
+  .example-card:hover {
+    transform: none;
+  }
+}
