@@ -1,0 +1,317 @@
+/* ===== GLOBAL STYLES AND CSS VARIABLES ===== */
+
+/* === CSS RESET AND NORMALIZATION === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* === ROOT VARIABLES === */
+:root {
+  /* === SPACING SYSTEM === */
+  --space-xs: 0.25rem;    /* 4px */
+  --space-sm: 0.5rem;     /* 8px */
+  --space-md: 1rem;       /* 16px */
+  --space-lg: 1.5rem;     /* 24px */
+  --space-xl: 2rem;       /* 32px */
+  --space-2xl: 3rem;      /* 48px */
+  --space-3xl: 4rem;      /* 64px */
+  --space-4xl: 6rem;      /* 96px */
+  
+  /* === BORDER RADIUS === */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-full: 50%;
+  --radius-tornado: 0.5rem 2rem 0.5rem 2rem; /* Asymmetric tornado-like */
+  
+  /* === TYPOGRAPHY SCALE === */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  --font-size-6xl: 3.75rem;   /* 60px */
+  
+  /* === FONT WEIGHTS === */
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  
+  /* === LINE HEIGHTS === */
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+  
+  /* === Z-INDEX LAYERS === */
+  --z-behind: -1;
+  --z-normal: 1;
+  --z-tooltip: 10;
+  --z-fixed: 20;
+  --z-modal-backdrop: 30;
+  --z-modal: 40;
+  --z-popover: 50;
+  --z-toast: 60;
+  
+  /* === TRANSITION TIMING === */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-spring: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-tornado: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* === BREAKPOINTS === */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+  /* === CONTAINER SIZES === */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-full: 100%;
+  
+  /* === EDUCATIONAL CONTENT === */
+  --content-width: 65ch;
+  --sidebar-width: 280px;
+  --header-height: 80px;
+  --footer-height: 120px;
+}
+
+/* === BASE HTML ELEMENTS === */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--dark-gray);
+  background-color: var(--off-white);
+  background: var(--gradient-sky);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* === CONTAINER SYSTEM === */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.container-sm { max-width: var(--container-sm); }
+.container-md { max-width: var(--container-md); }
+.container-lg { max-width: var(--container-lg); }
+.container-xl { max-width: var(--container-xl); }
+.container-full { max-width: var(--container-full); }
+
+/* === SECTION SPACING === */
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+.section-sm { padding: var(--space-2xl) 0; }
+.section-lg { padding: var(--space-4xl) 0; }
+
+/* === FOCUS MANAGEMENT === */
+:focus {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* === SELECTION STYLING === */
+::selection {
+  background-color: var(--sky-warning);
+  color: var(--storm-dark);
+}
+
+/* === SCROLLBAR STYLING === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-gray);
+  border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--storm-medium);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-normal);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--storm-dark);
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* === HIGH CONTRAST MODE === */
+@media (prefers-contrast: high) {
+  :root {
+    --shadow-light: none;
+    --shadow-medium: none;
+    --shadow-heavy: 0 0 0 1px var(--black);
+  }
+}
+
+/* === PRINT OPTIMIZATION === */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  body {
+    background: white !important;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+}
+
+/* === TORNADO-THEMED ELEMENTS === */
+.tornado-swirl {
+  background: var(--gradient-tornado);
+  border-radius: var(--radius-tornado);
+  position: relative;
+  overflow: hidden;
+}
+
+.tornado-swirl::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: conic-gradient(from 0deg, transparent, var(--tornado-swirl), transparent);
+  animation: tornado-spin 3s linear infinite;
+  opacity: var(--opacity-subtle);
+}
+
+.storm-element {
+  position: relative;
+  overflow: hidden;
+}
+
+.storm-element::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--cloud-dark) 0%, transparent 70%);
+  animation: storm-drift 8s ease-in-out infinite;
+  opacity: var(--opacity-light);
+  pointer-events: none;
+}
+
+/* === EDUCATIONAL HELPERS === */
+.highlight-important {
+  background: linear-gradient(120deg, var(--sky-warning) 0%, var(--sky-warning) 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.2em;
+  background-position: 0 88%;
+  transition: background-size var(--transition-normal);
+}
+
+.highlight-important:hover {
+  background-size: 100% 1.2em;
+}
+
+.danger-zone {
+  border-left: 4px solid var(--emergency-red);
+  background: linear-gradient(90deg, rgba(220, 20, 60, 0.1) 0%, transparent 100%);
+  padding: var(--space-md);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.safe-zone {
+  border-left: 4px solid var(--safe-green);
+  background: linear-gradient(90deg, rgba(34, 139, 34, 0.1) 0%, transparent 100%);
+  padding: var(--space-md);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* === PERFORMANCE OPTIMIZATION === */
+.gpu-accelerated {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* === ACCESSIBILITY HELPERS === */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--storm-dark);
+  color: var(--white);
+  padding: 8px;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  z-index: var(--z-toast);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 6px;
+}

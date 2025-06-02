@@ -1,0 +1,142 @@
+/* ===== TORNADO-THEMED COLOR PALETTE ===== */
+
+:root {
+  /* === PRIMARY STORM COLORS === */
+  --storm-dark: #1a1a2e;           /* Dark storm clouds */
+  --storm-medium: #16213e;         /* Approaching storm */
+  --storm-light: #0f3460;          /* Storm edge */
+  --tornado-core: #8b0000;         /* Tornado funnel core */
+  --tornado-swirl: #dc143c;        /* Tornado rotation */
+  
+  /* === ATMOSPHERIC COLORS === */
+  --sky-clear: #87ceeb;            /* Clear blue sky */
+  --sky-warning: #ffd700;          /* Warning sky */
+  --sky-severe: #ff8c00;           /* Severe weather */
+  --sky-danger: #ff4500;           /* Extreme danger */
+  
+  /* === CLOUD FORMATIONS === */
+  --cloud-white: #f8f8ff;          /* High clouds */
+  --cloud-gray: #708090;           /* Medium clouds */
+  --cloud-dark: #2f4f4f;           /* Storm clouds */
+  --cloud-anvil: #696969;          /* Anvil clouds */
+  
+  /* === WIND & MOTION === */
+  --wind-light: #e6f3ff;           /* Light breeze */
+  --wind-moderate: #b3d9ff;        /* Moderate wind */
+  --wind-strong: #4da6ff;          /* Strong wind */
+  --wind-extreme: #0066cc;         /* Extreme wind */
+  
+  /* === RADAR COLORS === */
+  --radar-green: #00ff00;          /* Light precipitation */
+  --radar-yellow: #ffff00;         /* Moderate precipitation */
+  --radar-orange: #ffa500;         /* Heavy precipitation */
+  --radar-red: #ff0000;            /* Severe weather */
+  --radar-purple: #800080;         /* Extreme conditions */
+  
+  /* === SAFETY & ALERTS === */
+  --safe-green: #228b22;           /* Safe conditions */
+  --watch-yellow: #ffd700;         /* Tornado watch */
+  --warning-orange: #ff8c00;       /* Tornado warning */
+  --emergency-red: #dc143c;        /* Emergency */
+  --critical-crimson: #8b0000;     /* Critical danger */
+  
+  /* === NEUTRAL FOUNDATIONS === */
+  --white: #ffffff;
+  --off-white: #fafafa;
+  --light-gray: #f5f5f5;
+  --medium-gray: #cccccc;
+  --dark-gray: #333333;
+  --black: #000000;
+  
+  /* === EDUCATIONAL COLORS === */
+  --info-blue: #4a90e2;           /* Information */
+  --success-green: #5cb85c;        /* Correct answers */
+  --warning-amber: #f0ad4e;        /* Caution */
+  --error-red: #d9534f;           /* Wrong answers */
+  
+  /* === INTERACTIVE ELEMENTS === */
+  --hover-glow: #87ceeb40;         /* Hover effect */
+  --active-pulse: #ffd70080;       /* Active state */
+  --focus-ring: #4a90e2;          /* Focus outline */
+  --disabled-gray: #999999;        /* Disabled state */
+  
+  /* === GRADIENT DEFINITIONS === */
+  --gradient-sky: linear-gradient(135deg, var(--sky-clear) 0%, var(--cloud-white) 100%);
+  --gradient-storm: linear-gradient(135deg, var(--storm-dark) 0%, var(--storm-medium) 50%, var(--storm-light) 100%);
+  --gradient-tornado: radial-gradient(circle, var(--tornado-core) 0%, var(--tornado-swirl) 70%, var(--storm-dark) 100%);
+  --gradient-warning: linear-gradient(45deg, var(--warning-orange) 0%, var(--sky-danger) 100%);
+  --gradient-safe: linear-gradient(135deg, var(--safe-green) 0%, var(--sky-clear) 100%);
+  
+  /* === SHADOW DEFINITIONS === */
+  --shadow-light: 0 2px 4px rgba(26, 26, 46, 0.1);
+  --shadow-medium: 0 4px 8px rgba(26, 26, 46, 0.15);
+  --shadow-heavy: 0 8px 16px rgba(26, 26, 46, 0.2);
+  --shadow-storm: 0 12px 24px rgba(139, 0, 0, 0.3);
+  
+  /* === OPACITY LEVELS === */
+  --opacity-ghost: 0.05;
+  --opacity-subtle: 0.1;
+  --opacity-light: 0.25;
+  --opacity-medium: 0.5;
+  --opacity-strong: 0.75;
+  --opacity-heavy: 0.9;
+}
+
+/* === THEME VARIATIONS === */
+
+/* Dark Storm Theme */
+.theme-dark {
+  --primary-bg: var(--storm-dark);
+  --secondary-bg: var(--storm-medium);
+  --text-primary: var(--white);
+  --text-secondary: var(--cloud-white);
+  --accent: var(--sky-warning);
+}
+
+/* Light Sky Theme */
+.theme-light {
+  --primary-bg: var(--off-white);
+  --secondary-bg: var(--light-gray);
+  --text-primary: var(--dark-gray);
+  --text-secondary: var(--medium-gray);
+  --accent: var(--storm-medium);
+}
+
+/* Warning Theme */
+.theme-warning {
+  --primary-bg: var(--warning-orange);
+  --secondary-bg: var(--sky-danger);
+  --text-primary: var(--white);
+  --text-secondary: var(--off-white);
+  --accent: var(--emergency-red);
+}
+
+/* === SEMANTIC COLOR CLASSES === */
+.color-tornado { color: var(--tornado-core) !important; }
+.color-storm { color: var(--storm-dark) !important; }
+.color-sky { color: var(--sky-clear) !important; }
+.color-warning { color: var(--warning-orange) !important; }
+.color-success { color: var(--success-green) !important; }
+.color-error { color: var(--error-red) !important; }
+
+.bg-tornado { background-color: var(--tornado-core) !important; }
+.bg-storm { background-color: var(--storm-dark) !important; }
+.bg-sky { background-color: var(--sky-clear) !important; }
+.bg-warning { background-color: var(--warning-orange) !important; }
+.bg-gradient-storm { background: var(--gradient-storm) !important; }
+.bg-gradient-tornado { background: var(--gradient-tornado) !important; }
+
+/* === FUJITA SCALE COLORS === */
+.ef0 { color: #90EE90; } /* Light Green */
+.ef1 { color: #FFFF00; } /* Yellow */
+.ef2 { color: #FFA500; } /* Orange */
+.ef3 { color: #FF0000; } /* Red */
+.ef4 { color: #8B0000; } /* Dark Red */
+.ef5 { color: #800080; } /* Purple */
+
+.bg-ef0 { background-color: #90EE90; }
+.bg-ef1 { background-color: #FFFF00; }
+.bg-ef2 { background-color: #FFA500; }
+.bg-ef3 { background-color: #FF0000; }
+.bg-ef4 { background-color: #8B0000; }
+.bg-ef5 { background-color: #800080; }
